@@ -13,14 +13,14 @@ from pip._vendor.requests.packages import chardet
 class ScrapynovelPipeline(object):
     def __init__(self):
         self.all = []
-        self.out_file='E:/Users/Administrator/PycharmProjects/MyProject/ScrapyNovel/ScrapyNovel/out/output.txt'
-        # os.mknod(self.out_file)
+        abspath = os.path.abspath('.')
+        self.out_file=abspath+'\\out\\大神回眸百媚生.txt'
         pass
 
     def process_item(self, item, spider):
-        print("item=", item)
+        # print("item=", item)
         self.all.append(item)
-        # sorted(self.all, key=attrgetter('chapter'), reverse=True)
+        self.all.sort(key=lambda i: i['chapter'], reverse=False)
         file=open(self.out_file, 'w', encoding='UTF-8')
         for index in self.all:
             file.write(index['title']+'\n')

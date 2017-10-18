@@ -13,16 +13,17 @@ from pip._vendor.requests.packages import chardet
 class NovelsangwuPipeline(object):
     def __init__(self):
         self.all = []
-        self.out_file = 'E:/Users/Administrator/PycharmProjects/MyProject/NovelSangWu/NovelSangWu/out/output.txt'
+        abspath = os.path.abspath(".")
+        self.out_file = abspath+'\\out\\青梅煮马.txt'
         pass
 
     def process_item(self, item, spider):
-        print("item=", item)
+        # print("item=", item)
         self.all.append(item)
-        # sorted(self.all, key=attrgetter('chapter'), reverse=True)
+        self.all.sort(key=lambda i:i['chapter'], reverse=False)
         file = open(self.out_file, 'w', encoding='UTF-8')
         for index in self.all:
             file.write(index['title'] + '\n')
-            file.write(index['content'] + '\n\n')
+            file.write(index['content'] + '\n\n\n')
         file.close()
         return item
