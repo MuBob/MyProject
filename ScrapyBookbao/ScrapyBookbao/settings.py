@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-# Scrapy settings for NovelYanYang project
+# Scrapy settings for ScrapyBookbao project
 #
 # For simplicity, this file contains only settings considered important or
 # commonly used. You can find more settings consulting the documentation:
@@ -9,14 +9,14 @@
 #     http://scrapy.readthedocs.org/en/latest/topics/downloader-middleware.html
 #     http://scrapy.readthedocs.org/en/latest/topics/spider-middleware.html
 
-BOT_NAME = 'NovelYanYang'
+BOT_NAME = 'ScrapyBookbao'
 
-SPIDER_MODULES = ['NovelYanYang.spiders']
-NEWSPIDER_MODULE = 'NovelYanYang.spiders'
+SPIDER_MODULES = ['ScrapyBookbao.spiders']
+NEWSPIDER_MODULE = 'ScrapyBookbao.spiders'
 
 
 # Crawl responsibly by identifying yourself (and your website) on the user-agent
-#USER_AGENT = 'NovelYanYang (+http://www.yourdomain.com)'
+#USER_AGENT = 'ScrapyBookbao (+http://www.yourdomain.com)'
 
 # Obey robots.txt rules
 ROBOTSTXT_OBEY = True
@@ -47,13 +47,13 @@ ROBOTSTXT_OBEY = True
 # Enable or disable spider middlewares
 # See http://scrapy.readthedocs.org/en/latest/topics/spider-middleware.html
 #SPIDER_MIDDLEWARES = {
-#    'NovelYanYang.middlewares.NovelyanyangSpiderMiddleware': 543,
+#    'ScrapyBookbao.middlewares.ScrapynovelSpiderMiddleware': 543,
 #}
 
 # Enable or disable downloader middlewares
 # See http://scrapy.readthedocs.org/en/latest/topics/downloader-middleware.html
 #DOWNLOADER_MIDDLEWARES = {
-#    'NovelYanYang.middlewares.MyCustomDownloaderMiddleware': 543,
+#    'ScrapyBookbao.middlewares.MyCustomDownloaderMiddleware': 543,
 #}
 
 # Enable or disable extensions
@@ -65,7 +65,7 @@ ROBOTSTXT_OBEY = True
 # Configure item pipelines
 # See http://scrapy.readthedocs.org/en/latest/topics/item-pipeline.html
 ITEM_PIPELINES = {
-   'NovelYanYang.pipelines.NovelyanyangPipeline': 300,
+   'ScrapyBookbao.pipelines.ScrapynovelPipeline': 300,
 }
 
 # Enable and configure the AutoThrottle extension (disabled by default)
