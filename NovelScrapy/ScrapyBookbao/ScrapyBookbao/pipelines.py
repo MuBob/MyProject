@@ -5,16 +5,15 @@
 # Don't forget to add your pipeline to the ITEM_PIPELINES setting
 # See: http://doc.scrapy.org/en/latest/topics/item-pipeline.html
 import os
-from operator import attrgetter
 
-from pip._vendor.requests.packages import chardet
+from NovelScrapy.ScrapyBookbao.ScrapyBookbao.boobbao_setting import BookbaoSetting
 
 
 class ScrapynovelPipeline(object):
     def __init__(self):
         self.all = []
         abspath = os.path.abspath('.')
-        self.out_file=abspath+'\\out\\大神回眸百媚生.txt'
+        self.out_file=abspath+'\\out\\'+BookbaoSetting.getNovelName()
         pass
 
     def process_item(self, item, spider):

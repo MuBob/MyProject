@@ -1,15 +1,17 @@
 # -*- coding:utf-8 -*-
-import scrapy
 import re
+
+import scrapy
+from ScrapyBookbao.items import NovelItem
 from scrapy import Request
 
-from ScrapyBookbao.items import NovelItem
+from NovelScrapy.ScrapyBookbao.ScrapyBookbao.boobbao_setting import BookbaoSetting
 
 
 class NovelSpider1(scrapy.spiders.Spider):
     name = "NovelDaShen"
     start_urls = [
-        "https://www.bookbao8.com/book/201507/15/id_XNDUxNTgy.html"
+        BookbaoSetting.getHtml()
     ]
     def __init__(self):
         self.headLink="https://www.bookbao8.com";
@@ -32,7 +34,7 @@ class NovelSpider1(scrapy.spiders.Spider):
         item['name'] = xpath_main.xpath('./dd')[0].xpath('./h1/a/text()').extract()[0]
         item['author'] = xpath_main.xpath('./dd')[1].xpath('./h3/text()').extract()[0]
         item['title'] = xpath_main.xpath('./dd')[0].xpath('./h1/text()').extract()[0]
-        count = re.findall(".*id_XNDUxNTgy_(.*).html.*", response.url)[0]
+        count = re.findall(BookbaoSetting.getHeadHtmlReg(), response.url)[0]
         if len(count)<=1:
             count='0'+count
         item['chapter'] =count
