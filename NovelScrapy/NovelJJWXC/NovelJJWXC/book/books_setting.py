@@ -1,11 +1,12 @@
 from NovelScrapy.NovelJJWXC.NovelJJWXC.book.book_mizhidunyouyv import BookMiZhiDunYouYv
+from NovelScrapy.NovelJJWXC.NovelJJWXC.book.book_bielaiwuyang import BookBieLaiWuYang
 
 
 class BooksSetting:
 
     @staticmethod
     def initBook():
-        return BookMiZhiDunYouYv()
+        return BookBieLaiWuYang()
 
     @staticmethod
     def getHtml():
