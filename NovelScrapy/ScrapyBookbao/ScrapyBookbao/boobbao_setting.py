@@ -2,13 +2,15 @@ from NovelScrapy.ScrapyBookbao.ScrapyBookbao.book.book_jiaowonvshen import BookJ
 
 from NovelScrapy.ScrapyBookbao.ScrapyBookbao.book.book_yiwuxiangyiwu import BookYiWuXiangYiWu
 from NovelScrapy.ScrapyBookbao.ScrapyBookbao.book.book_nishiwoxueshengyouzenyang import BookNiShiWoXueShengYouZenYang
+from NovelScrapy.ScrapyBookbao.ScrapyBookbao.book.book_xuxuyouzhi import BookXuXuYouZhi
+from NovelScrapy.ScrapyBookbao.ScrapyBookbao.book.book_qianqingrenbuzhii import BookQianQingRenBuZhi
 
 
 class BookbaoSetting:
 
     @staticmethod
     def initBook():
-        return BookNiShiWoXueShengYouZenYang()
+        return BookQianQingRenBuZhi()
 
     @staticmethod
     def getHtml():

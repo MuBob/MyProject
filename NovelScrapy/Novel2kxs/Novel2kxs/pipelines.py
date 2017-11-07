@@ -11,20 +11,22 @@ from operator import attrgetter, itemgetter
 
 from pip._vendor.requests.packages import chardet
 
+from NovelScrapy.Novel2kxs.Novel2kxs.books.books_setting import BooksSetting
+
 
 class NovelyanyangPipeline(object):
     def __init__(self):
         self.all = []
         abspath = os.path.abspath(".")
-        self.out_file = abspath + '\\out\\艳阳高高照.txt'
+        self.out_file = abspath + '\\out\\'+BooksSetting.getNovelName()
         pass
 
     def process_item(self, item, spider):
         # print("item=", item)
         self.all.append(item)
-        print("before sort list=", self.all[0])
+        # print("before sort list=", self.all[0])
         self.all.sort(key=lambda i: i["chapter"], reverse=False)
-        print("after sort list=", self.all[0])
+        # print("after sort list=", self.all[0])
         file = open(self.out_file, 'w', encoding='UTF-8')
         for index in self.all:
             # print('index=', index)

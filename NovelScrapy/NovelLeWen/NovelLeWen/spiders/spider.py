@@ -3,17 +3,18 @@ import re
 import scrapy
 from scrapy import Request
 
+from NovelScrapy.NovelLeWen.NovelLeWen.books.books_setting import BooksSetting
 from SpiderLearn.item import NovelItem
 
 
 class NovelShiZhangFuRen(scrapy.spiders.Spider):
     name = "NovelShiZhangFuRen"
     start_urls = [
-        "http://www.lwxiaoshuo.com/20/20621/.html"
+        BooksSetting.getHtml()+".html"
     ]
     def __init__(self):
         self.headLink="http://www.lwxiaoshuo.com"
-        self.web_head="http://www.lwxiaoshuo.com/20/20621/"
+        self.web_head=BooksSetting.getHtml()
         self.web_last=".html"
 
     def parse(self, response):
@@ -23,10 +24,8 @@ class NovelShiZhangFuRen(scrapy.spiders.Spider):
         link = list.xpath('.//tr/td/div[@class="dccss"]/a/@href').extract()
         index = list.xpath('.//tr/td/div[@class="dccss"]/a/text()').extract()
         for item in range(len(link)):
-            if "第" in index[item]:
-                print("index=%s, link=%s" % (index[item], link[item]))
-                yield Request(self.headLink + link[item], method="GET", callback=self.parse_item)
-                # break
+            print("index=%s, link=%s" % (index[item], link[item]))
+            yield Request(self.headLink + link[item], method="GET", callback=self.parse_item)
 
     def parse_item(self, response):
         # self.print_response(response)

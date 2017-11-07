@@ -6,11 +6,14 @@
 # See: http://doc.scrapy.org/en/latest/topics/item-pipeline.html
 import os
 
+from NovelScrapy.NovelLeWen.NovelLeWen.books.books_setting import BooksSetting
+
+
 class NovellewenPipeline(object):
     def __init__(self):
         self.all = []
         abspath = os.path.abspath(".")
-        self.out_file = abspath + '\\out\\市長夫人.txt'
+        self.out_file = abspath + '\\out\\'+BooksSetting.getNovelName()
         pass
 
     def process_item(self, item, spider):
