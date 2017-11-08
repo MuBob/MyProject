@@ -12,8 +12,9 @@ from NovelScrapy.NovelLeWen.NovelLeWen.books.books_setting import BooksSetting
 class NovellewenPipeline(object):
     def __init__(self):
         self.all = []
-        abspath = os.path.abspath(".")
-        self.out_file = abspath + '\\out\\'+BooksSetting.getNovelName()
+        abspath = os.path.abspath("..")
+        # self.out_file = FileUtils.getProjectRootDir() + '\\out\\' + BooksSetting.getNovelName()+".txt"
+        self.out_file = abspath + '\\out\\'+BooksSetting.getNovelName()+".txt"
         pass
 
     def process_item(self, item, spider):

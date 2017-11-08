@@ -6,13 +6,13 @@
 # See: http://doc.scrapy.org/en/latest/topics/item-pipeline.html
 import os
 
-from NovelScrapy.NovelJJWXC.NovelJJWXC.book.books_setting import BooksSetting
+from NovelScrapy.NovelBookBen.NovelBookBen.books.books_setting import BooksSetting
 
 
-class NoveljjwxcPipeline(object):
+class NovelbookbenPipeline(object):
     def __init__(self):
         self.all = []
-        abspath = os.path.abspath('..')
+        abspath = os.path.abspath('.')
         self.out_file = abspath + '\\out\\' + BooksSetting.getNovelName()+".txt"
 
     def process_item(self, item, spider):
@@ -20,6 +20,7 @@ class NoveljjwxcPipeline(object):
         self.all.append(item)
         self.all.sort(key=lambda i: i['chapter'], reverse=False)
         file = open(self.out_file, 'w', encoding='UTF-8')
+        file.write(item['name']+'\n\t\t'+item['author']+'\n')
         for index in self.all:
             file.write(index['title'] + '\n')
             file.write(index['content'] + '\n\n')

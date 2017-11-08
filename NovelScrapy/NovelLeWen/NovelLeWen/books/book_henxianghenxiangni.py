@@ -1,11 +1,11 @@
 from NovelScrapy.ScrapyBookbao.ScrapyBookbao.book.book import Book
 
-class BookMiZhiYouYv(Book):
+class BookHenXiangHenXiangNi(Book):
     def getBookName(self):
-        return "蜜汁炖鱿鱼"
+        return "很想很想你"
 
     def getHeadReg(self):
-        return "28748"
+        return "6092"
 
     def getHtml(self):
-        return "http://www.lwxs520.com/books/28/28748/"
+        return "http://www.lwxs520.com/books/6/6092/"

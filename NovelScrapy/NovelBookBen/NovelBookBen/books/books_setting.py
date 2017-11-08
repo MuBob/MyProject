@@ -1,13 +1,11 @@
-from NovelScrapy.NovelLeWen.NovelLeWen.books.book_shizhangfuren import BookShiZhangFuRen
-from NovelScrapy.NovelLeWen.NovelLeWen.books.book_mizhiyouyu import BookMiZhiYouYv
-from NovelScrapy.NovelLeWen.NovelLeWen.books.book_henxianghenxiangni import BookHenXiangHenXiangNi
+from NovelScrapy.NovelBookBen.NovelBookBen.books.book_ruanchenenjing import BookRuanChenEnJing
 
 
 class BooksSetting:
 
     @staticmethod
     def initBook():
-        return BookHenXiangHenXiangNi()
+        return BookRuanChenEnJing()
 
     @staticmethod
     def getHtml():

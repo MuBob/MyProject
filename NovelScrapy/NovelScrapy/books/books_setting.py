@@ -7,7 +7,7 @@ from NovelScrapy.ScrapyBookbao.ScrapyBookbao.book.book_qianqingrenbuzhii import 
 from NovelScrapy.ScrapyBookbao.ScrapyBookbao.book.book_shijieweichenli import BookShiJieWeiChenLi
 
 
-class BookbaoSetting:
+class BooksSetting:
 
     @staticmethod
     def initBook():
@@ -15,15 +15,20 @@ class BookbaoSetting:
 
     @staticmethod
     def getHtml():
-        book = BookbaoSetting.initBook()
+        book = BooksSetting.initBook()
         return book.getHtml()
 
     @staticmethod
     def getHeadHtmlReg():
-        book =  BookbaoSetting.initBook()
+        book =  BooksSetting.initBook()
         return ".*"+book.getHeadReg()+"_(.*).html.*"
 
     @staticmethod
     def getNovelName():
-        book =  BookbaoSetting.initBook()
+        book =  BooksSetting.initBook()
         return book.getBookName()+".txt"
+
+    @staticmethod
+    def getScrapyType():
+        book= BooksSetting.initBook()
+        return book.getScrapyType()

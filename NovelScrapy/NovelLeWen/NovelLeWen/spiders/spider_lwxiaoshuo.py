@@ -8,9 +8,9 @@ from SpiderLearn.item import NovelItem
 
 
 class NovelShiZhangFuRen(scrapy.spiders.Spider):
-    name = "NovelShiZhangFuRen"
+    name = "NovelLWXiaoShuo"
     start_urls = [
-        BooksSetting.getHtml()+".html"
+        BooksSetting.getHtml()
     ]
     def __init__(self):
         self.headLink="http://www.lwxiaoshuo.com"
