@@ -3,11 +3,14 @@ import scrapy
 import re
 from scrapy import Request
 
-from NovelScrapy.NovelScrapy.items import NovelscrapyItem
-from NovelScrapy.NovelScrapy.spiders.spider_types import SpiderTypes
+from ScrapyNovel.items import ScrapynovelItem
+
+from ScrapyNovel.books.spider_types import SpiderTypes
+
 
 class NovelSangWu(scrapy.spiders.Spider):
     name = SpiderTypes.getTypeName_SangWu()
+    # name = "NovelSangWu"
     start_urls = [
         "http://www.sangwu.org/book/5/5952/"
     ]
@@ -29,7 +32,7 @@ class NovelSangWu(scrapy.spiders.Spider):
         self.print_response(response)
         xpath_main = response.xpath('//div[@class="readmain"]')
         # print("main=", xpath_main.extract())
-        item = NovelscrapyItem()
+        item = ScrapynovelItem()
         item['name'] = xpath_main.xpath('./div[@class="bookname"]/h2/text()').extract()[0]
         item['author'] = xpath_main.xpath('./div[@class="bookname"]/h2/text()').extract()[0]
         item['title'] = xpath_main.xpath('./div[@class="bookname"]/h1/text()').extract()[0]

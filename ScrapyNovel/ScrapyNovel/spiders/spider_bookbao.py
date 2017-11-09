@@ -2,15 +2,16 @@
 import re
 
 import scrapy
+from ScrapyNovel.items import ScrapynovelItem
 from scrapy import Request
 
-from NovelScrapy.NovelScrapy.books.books_setting import BooksSetting
-from NovelScrapy.NovelScrapy.items import NovelscrapyItem
-from NovelScrapy.NovelScrapy.spiders.spider_types import SpiderTypes
+from ScrapyNovel.books.books_setting import BooksSetting
+from ScrapyNovel.books.spider_types import SpiderTypes
 
 
 class NovelSpider1(scrapy.spiders.Spider):
     name = SpiderTypes.getTypeName_BookBao()
+    # name = "NovelBookbao8"
     start_urls = [
         BooksSetting.getHtml()
     ]
@@ -31,11 +32,11 @@ class NovelSpider1(scrapy.spiders.Spider):
     def parse_item(self, response):
         # self.print_response(response)
         xpath_main = response.xpath('//div[@class="bdsub"]/dl')
-        item = NovelscrapyItem()
+        item = ScrapynovelItem()
         item['name'] = xpath_main.xpath('./dd')[0].xpath('./h1/a/text()').extract()[0]
         item['author'] = xpath_main.xpath('./dd')[1].xpath('./h3/text()').extract()[0]
         item['title'] = xpath_main.xpath('./dd')[0].xpath('./h1/text()').extract()[0]
-        count = re.findall(BookbaoSetting.getHeadHtmlReg(), response.url)[0]
+        count = re.findall(BooksSetting.getHeadHtmlReg(), response.url)[0]
         if len(count)<=1:
             count='0'+count
         item['chapter'] =count
