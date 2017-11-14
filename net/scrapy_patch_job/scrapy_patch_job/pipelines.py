@@ -8,6 +8,7 @@ import json
 import codecs
 import os
 
+import time
 import xlrd
 import xlwt
 
@@ -17,6 +18,10 @@ from net.scrapy_patch_job.scrapy_patch_job.filter import Filter
 
 class ScrapyPatchJobPipeline(object):
     def __init__(self):
+        time_format = time.strftime('%Y_%m_%d', time.localtime(time.time()))
+        absPath = os.path.abspath('..')
+        # self.file_name=absPath+'/scrapy_patch_job/zhaopin.xls'
+        self.file_name =absPath + '/scrapy_patch_job/招聘_' + time_format + '.xls'
         self.excel_row=0
         self.excel_column=0
         self.excel_work = xlwt.Workbook(encoding='utf-8')
@@ -30,8 +35,7 @@ class ScrapyPatchJobPipeline(object):
         self.excel_sheet.write(self.excel_row, 6, '薪资水平')
         self.excel_sheet.write(self.excel_row, 7, '待遇')
         self.excel_sheet.write(self.excel_row, 8, '详情描述')
-        self.absPath=os.path.abspath('..')
-        self.excel_work.save(self.absPath+'/scrapy_patch_job/zhaopin.xls')
+        self.excel_work.save(self.file_name)
         self.cur_next()
 
         self.gaode=GaoDeApi()
@@ -63,8 +67,7 @@ class ScrapyPatchJobPipeline(object):
         else:
             self.excel_sheet.write(self.excel_row, 0, item['title'])
             self.excel_sheet.write(self.excel_row, 4, item['detailLink'])
-
-        self.excel_work.save(self.absPath+'/scrapy_patch_job/zhaopin.xls')
+        self.excel_work.save(self.file_name)
         self.cur_next()
         return item
 

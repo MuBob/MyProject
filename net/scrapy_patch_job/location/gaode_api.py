@@ -6,6 +6,7 @@
 import math
 import requests
 
+
 class Position:
         def __init__(self):
                 self.longitude = 0  # 经度
