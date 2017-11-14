@@ -179,13 +179,13 @@ class BookShuangChengJi(Book):
         return "双城记"
 
     def getHeadReg(self):
-        return ".*" + "renjianshige/" + "(.*)" + ".html.*"
+        return ".*" + "id_XMzg0Njk0" + "_(.*)" + ".html.*"
 
     def getHtml(self):
-        return "http://yuedu.163.com/source/d3dbaf67baba48eda51ff009fb74c0bf_4"
+        return "https://www.bookbao8.com/book/201409/18/id_XMzg0Njk0.html"
 
     def getScrapyType(self):
-        return SpiderTypes.getTypeName_YueDu163()
+        return SpiderTypes.getTypeName_BookBao()
 
 
 class BookXieYang(Book):
