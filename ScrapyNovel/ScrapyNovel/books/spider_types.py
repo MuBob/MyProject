@@ -21,3 +21,15 @@ class SpiderTypes:
     @staticmethod
     def getTypeName_YueDu163():
         return 'NovelYueDu163'
+
+    @staticmethod
+    def getTypeName_2KXiaoShuo():
+        return 'Novel2KXS'
+
+    @staticmethod
+    def getTypeName_LeWenXiaoShuo():
+        return 'NovelLeWenXiaoShuo'
+
+    @staticmethod
+    def getTypeName_LWXiaoShuo520():
+        return 'NovelLWXS520'

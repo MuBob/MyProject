@@ -200,3 +200,18 @@ class BookXieYang(Book):
 
     def getScrapyType(self):
         return SpiderTypes.getTypeName_BookBen()
+
+class BookQingJiuXiMeiNan(Book):
+    def getBookName(self):
+        return "清酒系美男"
+
+    def getHeadReg(self):
+        return ".*" + "92979" + "/(.*)" + ".html.*"
+
+    def getHtml(self):
+        return "http://www.2kxs.com/xiaoshuo/92/92979/"
+
+    def getScrapyType(self):
+        return SpiderTypes.getTypeName_2KXiaoShuo()
+
+
