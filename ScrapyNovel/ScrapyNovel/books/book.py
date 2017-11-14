@@ -14,6 +14,10 @@ class Book:
     def getScrapyType(self):
         return ""
 
+    def getHtmlRegOrderReverse(self):
+        return False
+
+
 class BookZhiCiZhongNian(Book):
     def getBookName(self):
         return "至此终年"
@@ -26,6 +30,7 @@ class BookZhiCiZhongNian(Book):
 
     def getScrapyType(self):
         return SpiderTypes.getTypeName_BookBao()
+
 
 class BookBuJiuTouNiYiBeiZi(Book):
     def getBookName(self):
@@ -54,36 +59,41 @@ class BookXinSuRuJian(Book):
     def getScrapyType(self):
         return SpiderTypes.getTypeName_BookBao()
 
+
 class BookManManDeDouShiWoDuiNiDeAi(Book):
     def getBookName(self):
         return "满满的都是我对你的爱"
 
     def getHeadReg(self):
-        return    ".*" + "chapterid" + "=(.*)"
+        return ".*" + "chapterid" + "=(.*)"
 
     def getHtml(self):
         return "http://www.jjwxc.net/onebook.php?novelid=1017137"
+
     def getScrapyType(self):
         return SpiderTypes.getTypeName_JJWXC()
+
 
 class BookWoDeManLinDa(Book):
     def getBookName(self):
         return "我的曼林达"
 
     def getHeadReg(self):
-        return    ".*" + "chapterid" + "=(.*)"
+        return ".*" + "chapterid" + "=(.*)"
 
     def getHtml(self):
         return "http://www.jjwxc.net/onebook.php?novelid=2589669"
+
     def getScrapyType(self):
         return SpiderTypes.getTypeName_JJWXC()
+
 
 class BookPingShengBuWan(Book):
     def getBookName(self):
         return "平生不晚"
 
     def getHeadReg(self):
-        return    ".*" + "chapterid" + "=(.*)"
+        return ".*" + "chapterid" + "=(.*)"
 
     def getHtml(self):
         return "http://www.jjwxc.net/onebook.php?novelid=2534494"
@@ -91,12 +101,13 @@ class BookPingShengBuWan(Book):
     def getScrapyType(self):
         return SpiderTypes.getTypeName_JJWXC()
 
+
 class BookNiXiaoBuXiaoDouQingCheng(Book):
     def getBookName(self):
         return "你笑不笑都很倾城"
 
     def getHeadReg(self):
-        return    ".*" + "chapterid" + "=(.*)"
+        return ".*" + "chapterid" + "=(.*)"
 
     def getHtml(self):
         return "http://www.jjwxc.net/onebook.php?novelid=739180"
@@ -104,39 +115,88 @@ class BookNiXiaoBuXiaoDouQingCheng(Book):
     def getScrapyType(self):
         return SpiderTypes.getTypeName_JJWXC()
 
+
 class BookMiZhiDunYouYv(Book):
     def getBookName(self):
         return "蜜汁炖鱿鱼"
 
     def getHeadReg(self):
-        return    ".*" + "chapterid" + "=(.*)"
+        return ".*" + "chapterid" + "=(.*)"
 
     def getHtml(self):
         return "http://www.jjwxc.net/onebook.php?novelid=2307154"
+
     def getScrapyType(self):
         return SpiderTypes.getTypeName_JJWXC()
+
 
 class BookBieLaiWuYang(Book):
     def getBookName(self):
         return "别来无恙"
 
     def getHeadReg(self):
-        return    ".*" + "chapterid" + "=(.*)"
+        return ".*" + "chapterid" + "=(.*)"
 
     def getHtml(self):
         return "http://www.jjwxc.net/onebook.php?novelid=1928902"
+
     def getScrapyType(self):
         return SpiderTypes.getTypeName_JJWXC()
+
 
 class BookAiNiShiWoZuoGuoZuiHaoDeShi(Book):
     def getBookName(self):
         return "爱你,是我做过最好的事"
 
     def getHeadReg(self):
-        return    ".*" + "chapterid" + "=(.*)"
+        return ".*" + "chapterid" + "=(.*)"
 
     def getHtml(self):
         return "http://www.jjwxc.net/onebook.php?novelid=427080"
 
     def getScrapyType(self):
         return SpiderTypes.getTypeName_JJWXC()
+
+
+class BookRenJianShiGe(Book):
+    def getBookName(self):
+        return "人间失格"
+
+    def getHeadReg(self):
+        return ".*" + "renjianshige/" + "(.*)" + ".html.*"
+
+    def getHtml(self):
+        return "http://www.sbkk88.com/mingzhu/waiguowenxuemingzhu/renjianshige/"
+
+    def getScrapyType(self):
+        return SpiderTypes.getTypeName_SDKK88()
+
+    def getHtmlRegOrderReverse(self):
+        return True
+
+class BookShuangChengJi(Book):
+    def getBookName(self):
+        return "双城记"
+
+    def getHeadReg(self):
+        return ".*" + "renjianshige/" + "(.*)" + ".html.*"
+
+    def getHtml(self):
+        return "http://yuedu.163.com/source/d3dbaf67baba48eda51ff009fb74c0bf_4"
+
+    def getScrapyType(self):
+        return SpiderTypes.getTypeName_YueDu163()
+
+
+class BookXieYang(Book):
+    def getBookName(self):
+        return "斜阳"
+
+    def getHeadReg(self):
+        return ".*" + "80_80494/" + "(.*)" + ".html.*"
+
+    def getHtml(self):
+        return "http://www.bookben.com/read/80_80494/"
+
+    def getScrapyType(self):
+        return SpiderTypes.getTypeName_BookBen()

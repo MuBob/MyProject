@@ -18,7 +18,7 @@ class ScrapynovelPipeline(object):
     def process_item(self, item, spider):
         # print("item=", item)
         self.all.append(item)
-        self.all.sort(key=lambda i: i['chapter'], reverse=False)
+        self.all.sort(key=lambda i: i['chapter'], reverse=BooksSetting.getHtmlRegOrderReverse())
         file = open(self.out_file, 'w', encoding='UTF-8')
         file.write(item['name'] + '\n\t\t' + item['author'] + '\n')
         for index in self.all:
