@@ -1,10 +1,12 @@
 class Filter:
     def __init__(self):
-        self.title_ins=["Android","安卓"]
+        self.title_ins=[]
         self.title_outs = ["技术","英文","销售","运营"]
         self.location_ins = ["海淀"]
         self.money_rang=[3000]
         self.treatement_outs=["绩效"]
+        self.treatment_ins=[]
+        self.description_ins=[]
         self.description_outs=["本科","形象","气质","销售","跟单","弹性工作"]
 
     def filterTitleIn(self, str=str()):
@@ -47,17 +49,33 @@ class Filter:
             return False
 
     def filterTreatment(self, str=str()):
+        is_contain=True
         for cur in self.treatement_outs:
             if str.__contains__(cur):
-                return False
+                is_contain=False
+                break
             else:
                 pass
-        return True
+        for cur in self.treatment_ins:
+            if str.__contains__(cur):
+                pass
+            else:
+                is_contain=False
+                break
+        return is_contain
 
     def filterDescription(self, str=str()):
+        is_contain = True
         for cur in self.description_outs:
             if str.__contains__(cur):
-                return False
+                is_contain = False
+                break
             else:
                 pass
-        return True
+        for cur in self.description_ins:
+            if str.__contains__(cur):
+                pass
+            else:
+                is_contain = False
+                break
+        return  is_contain
