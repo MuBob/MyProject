@@ -33,3 +33,7 @@ class SpiderTypes:
     @staticmethod
     def getTypeName_LWXiaoShuo520():
         return 'NovelLWXS520'
+
+    @staticmethod
+    def getTypeName_MaoPu():
+        return 'NovelMaoPu'

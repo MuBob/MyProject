@@ -2,9 +2,9 @@
 import re
 
 import scrapy
-from ScrapyNovel.items import ScrapynovelItem
 from scrapy import Request
 
+from ScrapyNovel.items import ScrapynovelItem
 from ScrapyNovel.books.books_setting import BooksSetting
 from ScrapyNovel.books.spider_types import SpiderTypes
 

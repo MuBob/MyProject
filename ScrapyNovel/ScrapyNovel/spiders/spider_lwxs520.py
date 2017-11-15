@@ -3,9 +3,10 @@ import re
 import scrapy
 from scrapy import Request
 
-from NovelScrapy.NovelLeWen.NovelLeWen.books.books_setting import BooksSetting
-from ScrapyNovel.ScrapyNovel.books.spider_types import SpiderTypes
-from SpiderLearn.item import NovelItem
+from ScrapyNovel.books.books_setting import BooksSetting
+from ScrapyNovel.items import ScrapynovelItem
+
+from ScrapyNovel.books.spider_types import SpiderTypes
 
 
 class NovelShiZhangFuRen(scrapy.spiders.Spider):
@@ -34,7 +35,7 @@ class NovelShiZhangFuRen(scrapy.spiders.Spider):
     def parse_item(self, response):
         # self.print_response(response)
         xpath_main = response.xpath('//table[@class="border_l_r"]/tbody/tr/td/div')
-        item = NovelItem()
+        item = ScrapynovelItem()
         item['name'] = xpath_main.xpath('./h2/text()').extract()[0]
         item['author'] = xpath_main.xpath('./div[@class="border_b"]/text()').extract()[0]
         item['title'] = xpath_main.xpath('./h1/text()').extract()[0]

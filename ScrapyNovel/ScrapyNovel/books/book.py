@@ -214,4 +214,54 @@ class BookQingJiuXiMeiNan(Book):
     def getScrapyType(self):
         return SpiderTypes.getTypeName_2KXiaoShuo()
 
+class BookHenXiangHenXiangNi(Book):
+    def getBookName(self):
+        return "很想很想你"
 
+    def getHeadReg(self):
+        return ".*" + "6092" + "/(.*)" + ".html.*"
+
+    def getHtml(self):
+        return "http://www.lwxs520.com/books/6/6092/"
+
+    def getScrapyType(self):
+        return SpiderTypes.getTypeName_LWXiaoShuo520()
+
+class BookMiZhiYouYv(Book):
+    def getBookName(self):
+        return "蜜汁炖鱿鱼"
+
+    def getHeadReg(self):
+        return ".*" + "28748" + "/(.*)" + ".html.*"
+
+    def getHtml(self):
+        return "http://www.lwxs520.com/books/28/28748/"
+
+    def getScrapyType(self):
+        return SpiderTypes.getTypeName_LWXiaoShuo520()
+
+class BookShiZhangFuRen(Book):
+    def getBookName(self):
+        return "市长夫人"
+
+    def getHeadReg(self):
+        return ""
+
+    def getHtml(self):
+        return "http://www.lwxiaoshuo.com/20/20621/"
+
+    def getScrapyType(self):
+        return SpiderTypes.getTypeName_LeWenXiaoShuo()
+
+class BookWeiQingHunAi(Book):
+    def getBookName(self):
+        return "危情婚爱，总裁宠妻如命"
+
+    def getHeadReg(self):
+        return ""
+
+    def getHtml(self):
+        return "http://www.mpxiaoshuo.com/book/49339/"
+
+    def getScrapyType(self):
+        return SpiderTypes.getTypeName_MaoPu()
