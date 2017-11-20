@@ -21,7 +21,7 @@ class ScrapyPatchJobPipeline(object):
         time_format = time.strftime('%Y_%m_%d', time.localtime(time.time()))
         absPath = os.path.abspath('..')
         # self.file_name=absPath+'/scrapy_patch_job/zhaopin.xls'
-        self.file_name =absPath + '/scrapy_patch_job/招聘_' + time_format + '.xls'
+        self.file_name =absPath + '/scrapy_patch_job/招聘(知春路地铁站五公里内)_' + time_format + '.xls'
         self.excel_row=0
         self.excel_column=0
         self.excel_work = xlwt.Workbook(encoding='utf-8')
@@ -39,8 +39,8 @@ class ScrapyPatchJobPipeline(object):
         self.cur_next()
 
         self.gaode=GaoDeApi()
-        self.my_position=self.gaode.getPosition("北京市海淀区和泓四季")
-        self.my_range=1000 #(米)
+        self.my_position=self.gaode.getPosition("知春路地铁站")
+        self.my_range=5*1000 #(米)
 
         self.filter=Filter()
 
@@ -55,6 +55,7 @@ class ScrapyPatchJobPipeline(object):
         is_description = self.filter.filterDescription(item['description'])
 
         if is_in_range&is_title&is_location&is_money&is_treatment&is_description:
+        # if is_title&is_location&is_money&is_treatment&is_description:
             self.excel_sheet.write(self.excel_row, 0, item['title'])
             self.excel_sheet.write(self.excel_row, 1, item['company'])
             self.excel_sheet.write(self.excel_row, 2, item['city'])
