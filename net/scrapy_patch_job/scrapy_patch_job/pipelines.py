@@ -21,7 +21,7 @@ class ScrapyPatchJobPipeline(object):
         time_format = time.strftime('%Y_%m_%d', time.localtime(time.time()))
         absPath = os.path.abspath('..')
         # self.file_name=absPath+'/scrapy_patch_job/zhaopin.xls'
-        self.file_name =absPath + '/scrapy_patch_job/招聘_' + time_format + '.xls'
+        self.file_name =absPath + '/scrapy_patch_job/out/招聘_' + time_format + '.xls'
         self.excel_row=0
         self.excel_column=0
         self.excel_work = xlwt.Workbook(encoding='utf-8')

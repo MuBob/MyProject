@@ -10,5 +10,13 @@ import scrapy
 
 class SearchSinaItem(scrapy.Item):
     # define the fields for your item here like:
-    # name = scrapy.Field()
+    name = scrapy.Field()  #名字
+    sex= scrapy.Field()  #性别
+    address = scrapy.Field()  #地址
+    detail_link=scrapy.Field()  #主页链接
+    number_guan_zhu=scrapy.Field()
+    number_fen_si=scrapy.Field()
+    number_wei_bo=scrapy.Field()
+    info=scrapy.Field()  #个人信息
+    label=scrapy.Field()  #所有标签
     pass
