@@ -1,6 +1,6 @@
 class MySetting:
     def __init__(self):
-        self.__key_word="张三"
+        self.__key_word="雨霖霖"
 
 
     def getKeyWord(self):
