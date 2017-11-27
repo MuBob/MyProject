@@ -20,7 +20,7 @@ class NovelShiZhangFuRen(scrapy.spiders.Spider):
         self.web_last=".html"
 
     def parse(self, response):
-        # self.print_response(response)
+        self.print_response(response)
         list=response.xpath('//table[@style="MARGIN-BOTTOM: 10px"]/tbody')
         # print("list=", list.extract())
         link = list.xpath('.//tr/td/div[@class="dccss"]/a/@href').extract()
@@ -36,7 +36,7 @@ class NovelShiZhangFuRen(scrapy.spiders.Spider):
         item['name'] = xpath_main.xpath('./div/h1/text()').extract()[0]
         item['author'] = xpath_main.xpath('./div/div[@class="border_b"]/text()').extract()[0]
         item['title'] = xpath_main.xpath('./div/h2/text()').extract()[0]
-        item['chapter'] = re.findall(".*"+self.web_head+"(.*)"+self.web_last+".*", response.url)[0]
+        item['chapter'] = re.findall(BooksSetting.getHeadHtmlReg(), response.url)[0]
         item['content'] = self.list2str(xpath_main.xpath('./table/tbody/tr/td/div/p/text()').extract())
         print("item=", item)
         yield item
