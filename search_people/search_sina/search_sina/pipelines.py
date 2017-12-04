@@ -8,4 +8,5 @@
 
 class SearchSinaPipeline(object):
     def process_item(self, item, spider):
+        print('item=', item)
         return item
