@@ -49,13 +49,14 @@ class ScrapyPatchJobPipeline(object):
         # is_in_range = self.gaode.isInRange(self.my_position, self.my_range, self.gaode.getPosition(item['location']))
         # is_title = self.filter.filterTitle(item['title'])
         is_title = self.filter.filterTitleOut(item['title'])
-        is_location = self.filter.filterLocation(item['location'])
+        # is_location = self.filter.filterLocation(item['location'])
         is_money = self.filter.filterMoney(item['money'])
         is_treatment = self.filter.filterTreatment(item['treatment'])
         is_description = self.filter.filterDescription(item['description'])
 
         # if is_in_range&is_title&is_location&is_money&is_treatment&is_description:
-        if is_title&is_location&is_money&is_treatment&is_description:
+        # if is_title&is_location&is_money&is_treatment&is_description:
+        if is_title & is_money & is_treatment & is_description:
             self.excel_sheet.write(self.excel_row, 0, item['title'])
             self.excel_sheet.write(self.excel_row, 1, item['company'])
             self.excel_sheet.write(self.excel_row, 2, item['city'])

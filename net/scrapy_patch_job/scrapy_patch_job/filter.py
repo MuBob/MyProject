@@ -3,7 +3,7 @@ class Filter:
         self.title_ins=[]
         self.title_outs = ["技术","英文","销售","运营"]
         self.location_ins = ["海淀"]
-        self.money_rang=[3000]
+        self.money_rang=[4000]
         self.treatement_outs=["绩效"]
         self.treatment_ins=[]
         self.description_ins=[]

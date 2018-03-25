@@ -43,6 +43,7 @@ class ScrapyPatchHousePipeline(object):
         try:
             is_in_range = self.gaode.isInRange(self.my_position, self.my_range, self.gaode.getPosition(item['area']))
             is_lean_in = self.filter.filtLeanIn(item['lease'])
+            is_lean_in = True
             is_money = self.filter.filtMoney(item['rentMoney'])
             if is_in_range&is_lean_in & is_money:
                 self.excel_sheet.write(self.excel_row, 0, item['title'])
