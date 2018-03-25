@@ -31,6 +31,18 @@ class BookZhiCiZhongNian(Book):
     def getScrapyType(self):
         return SpiderTypes.getTypeName_BookBao()
 
+class BookNiXiaoBuXiaoDouHenQingCheng_BookBao8(Book):
+    def getBookName(self):
+        return "你笑不笑都很倾城"
+
+    def getHeadReg(self):
+        return ".*" + "id_XMjE4MDQ0" + "_(.*).html.*"
+
+    def getHtml(self):
+        return "https://www.bookbao8.com/views/201111/20/218044.html"
+
+    def getScrapyType(self):
+        return SpiderTypes.getTypeName_BookBao()
 
 class BookBuJiuTouNiYiBeiZi(Book):
     def getBookName(self):
@@ -359,6 +371,17 @@ class BookYiZuoChengZaiDengNi(Book):
         return SpiderTypes.getTypeName_LeWenXiaoShuo()
 
 
+class BookWoDeLaoGongShiMingWang(Book):
+    def getBookName(self):
+        return "我的老公是冥王"
 
+    def getHeadReg(self):
+        return ".*" + "3769" + "/(.*).html.*"
+
+    def getHtml(self):
+        return "http://www.xinshula.com/3/3769/"
+
+    def getScrapyType(self):
+        return SpiderTypes.getTypeName_XinShuLa()
 
 

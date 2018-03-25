@@ -37,3 +37,7 @@ class SpiderTypes:
     @staticmethod
     def getTypeName_MaoPu():
         return 'NovelMaoPu'
+
+    @staticmethod
+    def getTypeName_XinShuLa():
+        return 'NovelXinShuLa'

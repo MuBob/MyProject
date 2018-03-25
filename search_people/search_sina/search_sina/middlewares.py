@@ -6,6 +6,9 @@
 # http://doc.scrapy.org/en/latest/topics/spider-middleware.html
 
 from scrapy import signals
+import random
+
+from search_people.search_sina.search_sina import cookies
 
 
 class SearchSinaSpiderMiddleware(object):
@@ -54,3 +57,18 @@ class SearchSinaSpiderMiddleware(object):
 
     def spider_opened(self, spider):
         spider.logger.info('Spider opened: %s' % spider.name)
+
+
+# class UserAgentMiddleware(object):
+#     """ 换User-Agent """
+#
+#     def process_request(self, request, spider):
+#         agent = random.choice(agents)
+#         request.headers["User-Agent"] = agent
+
+
+class CookiesMiddleware(object):
+    """ 换Cookie """
+    def process_request(self, request, spider):
+        cookie = random.choice(cookies)
+        request.cookies = cookie

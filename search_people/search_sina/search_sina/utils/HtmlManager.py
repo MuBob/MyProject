@@ -1,5 +1,9 @@
 class HtmlManager:
     @staticmethod
+    def getSinaLoginUrl():
+        return "weibo.com/login.php"
+
+    @staticmethod
     def getSinaUrl():
         return "http://s.weibo.com/user/"
 
