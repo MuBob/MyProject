@@ -58,7 +58,10 @@ class JobSpider(scrapy.Spider):
         item["city"] = response.xpath('.//div[@class="terminalpage-left"]/ul/li/strong/a/text()').extract()[0].strip()
         item["treatment"] = response.xpath('.//div[@class="inner-left fl"]/div[@class="welfare-tab-box"]/span/text()').extract()
         item["publishTime"] = response.xpath('.//div[@class="terminalpage-left"]/ul/li/strong/span/text()').extract()[0].strip()
-        item["location"] = response.xpath('.//div[@class="terminalpage-left"]/div[@class="terminalpage-main clearfix"]/div[@class="tab-cont-box"]/div[@class="tab-inner-cont"]/h2/text()').extract()[0].strip()
+        try:
+            item["location"] = response.xpath('.//div[@class="terminalpage-left"]/div[@class="terminalpage-main clearfix"]/div[@class="tab-cont-box"]/div[@class="tab-inner-cont"]/h2/text()').extract()[0].strip()
+        except IndexError:
+            item["location"] = item["city"]
         item["detailLink"] = response.xpath('/html/head/link[@rel="canonical"]/@href').extract()[0].strip()
         item["description"] = response.xpath('.//div[@class="terminalpage-left"]/div[@class="terminalpage-main clearfix"]/div[@class="tab-cont-box"]/div[@class="tab-inner-cont"]/p/text()').extract()
         item["description"] = self.list2Str(list=item["description"]).strip().replace('\r','').replace('\n','').replace('\t','')
