@@ -8,13 +8,14 @@ class JobSpider(scrapy.Spider):
     allowed_domains = ["zhaopin.com"]
     start_urls = [
         "http://www.zhaopin.com"
-        ,"http://sou.zhaopin.com/jobs/searchresult.ashx?jl=北京&kw=文员&sm=0&p=1"
+        ,"http://sou.zhaopin.com/jobs/searchresult.ashx?jl=北京"
+        # ,"http://sou.zhaopin.com/jobs/searchresult.ashx?jl=北京&kw=文员&sm=0&p=1"
     ] #必需定义，一个url列表，spider从这些网页开始抓取
 
     def start_requests(self):
         for i in range(10):
-            # url="http://sou.zhaopin.com/jobs/searchresult.ashx?jl=北京&kw=Android&sg=4a10f88d651f4219819604a1f028639a&sm=0&p=%d"%(i)
-            url="http://sou.zhaopin.com/jobs/searchresult.ashx?jl=北京&kw=文员&sm=0&p=%d"%(i)
+            url="http://sou.zhaopin.com/jobs/searchresult.ashx?jl=北京&kw=Android&sm=0&p=%d"%(i)
+            # url="http://sou.zhaopin.com/jobs/searchresult.ashx?jl=北京&kw=文员&sm=0&p=%d"%(i)
             print('start_requests: current i=%d, url=%s'%(i, url))
             yield scrapy.Request(url)
 
@@ -33,6 +34,26 @@ class JobSpider(scrapy.Spider):
         # print("cur table=%s"%(trs.extract()))
         item["title"] = response.xpath('.//div[@class="inner-left fl"]/h1/text()').extract()[0].strip()
         item["company"] = response.xpath('.//div[@class="inner-left fl"]/h2/a/text()').extract()[0].strip()
+        xpath_company_detail_li = response.xpath('.//div[@class="terminalpage-right"]/div[@class="company-box"]/ul[@class="terminal-ul clearfix terminal-company mt20"]/li')
+        xpath_company_detail_value = xpath_company_detail_li.xpath('.//strong/text()').extract()
+        xpath_company_detail_key = xpath_company_detail_li.xpath('.//span/text()').extract()
+        index_value=0
+        for index_key in range(len(xpath_company_detail_key)):
+            key=xpath_company_detail_key[index_key]
+            value=xpath_company_detail_value[index_value]
+            if "规模" in key:
+                item["company_detail_size"] = value.strip()
+            elif "性质" in key:
+                item["company_detail_nature"]=value.strip()
+            elif "地址" in key:
+                item["company_detail_address"] = value.strip()
+            elif "行业" in key:
+                index_value-=1
+            elif "主页" in key:
+                index_value-=1
+            index_value+=1
+
+
         item["money"] = response.xpath('.//div[@class="terminalpage-left"]/ul/li/strong/text()').extract()[0].strip()
         item["city"] = response.xpath('.//div[@class="terminalpage-left"]/ul/li/strong/a/text()').extract()[0].strip()
         item["treatment"] = response.xpath('.//div[@class="inner-left fl"]/div[@class="welfare-tab-box"]/span/text()').extract()
