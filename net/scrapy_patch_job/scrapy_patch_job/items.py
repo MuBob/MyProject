@@ -13,6 +13,9 @@ class ScrapyPatchJobItem(scrapy.Item):
     # define the fields for your item here like:
     title = Field()# 职位名称
     company = Field()#公司名称
+    company_detail_size=Field() #公司规模
+    company_detail_nature=Field() #公司性质
+    company_detail_address=Field() #公司地址
     city = Field() #所在城市
     location = Field()# 工作地点
     detailLink = Field()  # 职位详情页链接

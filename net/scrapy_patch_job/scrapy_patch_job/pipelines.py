@@ -35,6 +35,9 @@ class ScrapyPatchJobPipeline(object):
         self.excel_sheet.write(self.excel_row, 6, '薪资水平')
         self.excel_sheet.write(self.excel_row, 7, '待遇')
         self.excel_sheet.write(self.excel_row, 8, '详情描述')
+        self.excel_sheet.write(self.excel_row, 9, '公司规模')
+        self.excel_sheet.write(self.excel_row, 10, '公司性质')
+        self.excel_sheet.write(self.excel_row, 11, '公司地址')
         self.excel_work.save(self.file_name)
         self.cur_next()
 
@@ -49,14 +52,13 @@ class ScrapyPatchJobPipeline(object):
         # is_in_range = self.gaode.isInRange(self.my_position, self.my_range, self.gaode.getPosition(item['location']))
         # is_title = self.filter.filterTitle(item['title'])
         is_title = self.filter.filterTitleOut(item['title'])
-        # is_location = self.filter.filterLocation(item['location'])
-        is_money = self.filter.filterMoney(item['money'])
+        is_location = self.filter.filterLocation(item['location'])
+        is_money = self.filter.filterMoney(item['money'], containNone=False)
         is_treatment = self.filter.filterTreatment(item['treatment'])
         is_description = self.filter.filterDescription(item['description'])
 
-        # if is_in_range&is_title&is_location&is_money&is_treatment&is_description:
+        if is_money:
         # if is_title&is_location&is_money&is_treatment&is_description:
-        if is_title & is_money & is_treatment & is_description:
             self.excel_sheet.write(self.excel_row, 0, item['title'])
             self.excel_sheet.write(self.excel_row, 1, item['company'])
             self.excel_sheet.write(self.excel_row, 2, item['city'])
@@ -66,6 +68,9 @@ class ScrapyPatchJobPipeline(object):
             self.excel_sheet.write(self.excel_row, 6, item['money'])
             self.excel_sheet.write(self.excel_row, 7, item['treatment'])
             self.excel_sheet.write(self.excel_row, 8, item['description'])
+            self.excel_sheet.write(self.excel_row, 9, item['company_detail_size'])
+            self.excel_sheet.write(self.excel_row, 10, item['company_detail_nature'])
+            self.excel_sheet.write(self.excel_row, 11, item['company_detail_address'])
         else:
             self.excel_sheet.write(self.excel_row, 0, item['title'])
             self.excel_sheet.write(self.excel_row, 4, item['detailLink'])
