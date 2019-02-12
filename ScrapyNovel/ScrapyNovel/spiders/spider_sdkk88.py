@@ -1,64 +1,51 @@
 # -*- coding:utf-8 -*-
 import re
-
-import scrapy
-from scrapy import Request
-
-from ScrapyNovel.items import ScrapynovelItem
 from ScrapyNovel.books.books_setting import BooksSetting
 from ScrapyNovel.books.spider_types import SpiderTypes
+from ScrapyNovel.spiders.spider_base import NovelSpiderBase
 
 
-class NovelSpider1(scrapy.spiders.Spider):
-    name = SpiderTypes.getTypeName_SDKK88()
+class NovelSpider1(NovelSpiderBase):
     # name = "NovelSDKK88"
-    start_urls = [
-        BooksSetting.getHtml()
-    ]
-    def __init__(self):
-        self.headLink="http://www.sbkk88.com"
-        self.author=""
+    name = SpiderTypes.getTypeName_SDKK88()
 
-    def parse(self, response):
-        # self.print_response(response)
-        list=response.xpath('//div[@class="mingzhuMain"]/div[@class="mingzhuLeft"]/ul[@class="leftList"]/li')
-        extract_author = response.xpath(
+    def __init__(self):
+        super().__init__()
+        self.headLink = "http://www.sbkk88.com"
+
+    def getXpathList(self, response):
+        return response.xpath('//div[@class="mingzhuMain"]/div[@class="mingzhuLeft"]/ul[@class="leftList"]/li')
+
+    def getXpathMainInfo(self, response):
+        return response.xpath('//div[@class="mingzhuMain"]/div[@class="mingzhuLeft"]/ul[@class="leftList"]/li')
+
+    def getStrMainInfo_Name(self, info):
+        extract_author = info.xpath(
             '//div[@class="mingzhuMain"]/div[@class="mingzhuLeft"]/div[@class="mingzhuTitle"]/h1/text()').extract()[0]
         find_author = re.findall(".*：(.*)", extract_author)[0]
-        if len(find_author)>0:
-            self.author=find_author
+        if len(find_author) > 0:
+            author = find_author
         else:
-            self.author=extract_author
-        print("list=", list.extract())
-        for item in list:
-            link=item.xpath('./a/@href').extract()[0]
-            index=item.xpath('./a/text()').extract()[0]
-            print("index=%s, link=%s"%(index, link))
-            yield Request(self.headLink+link, method="GET", callback=self.parse_item)
-            # break
+            author = extract_author
+        return author
 
-    def parse_item(self, response):
-        # self.print_response(response)
-        item = ScrapynovelItem()
-        item['name'] = BooksSetting.getNovelName()
-        item['author'] = self.author
-        item['title'] = response.xpath('//div[@id="f_title1"]/h1/text()').extract()[0]
-        count = re.findall(BooksSetting.getHeadHtmlReg(), response.url)[0]
-        item['chapter'] =count
-        item['content'] = self.list2str(response.xpath('//div[@id="f_content1"]/div[@id="f_article"]/p/text()').extract())
-        print("item=", item)
-        yield item
+    def getStrItem_Link(self, item):
+        part_url = item.xpath('./a/@href').extract()[0]
+        link = self.headLink + part_url
+        return link
 
+    def getStrItem_Idex(self, item):
+        return item.xpath('./a/text()').extract()[0]
 
-    def print_response(self, response):
-        current_url = response.url  # 爬取时请求的url
-        body = response.body  # 返回的html
-        print("request=%s, response=%s" % (current_url, body))
+    def getXpathItem_Main(self, response):
+        return response
 
-    def list2str(self, list):
-        s=""
-        for index in list:
-            # print('index=',index)
-            index.replace('\u3000','').replace('\r','')
-            s=s+index
-        return s
+    def getStrItem_Author(self, xpath_main):
+        return xpath_main.xpath('./dd')[1].xpath('./h3/text()').extract()[0]
+
+    def getStrItem_Title(self, xpath_main):
+        return xpath_main.xpath('//div[@id="f_title1"]/h1/text()').extract()[0]
+
+    def getStrItem_Content(self, xpath_main):
+        return xpath_main.xpath('//div[@id="f_content1"]/div[@id="f_article"]/p/text()').extract()
+

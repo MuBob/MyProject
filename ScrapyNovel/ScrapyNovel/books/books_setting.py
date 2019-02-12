@@ -1,11 +1,11 @@
-from ScrapyNovel.books.book import BookZhiShiXiangLiaoNi
+from ScrapyNovel.books.book import BookRenJianShiGe
 
 
 class BooksSetting:
 
     @staticmethod
     def initBook():
-        return BookZhiShiXiangLiaoNi()
+        return BookRenJianShiGe()
 
     @staticmethod
     def getHtml():
