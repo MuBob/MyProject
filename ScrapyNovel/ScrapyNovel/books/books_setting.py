@@ -1,16 +1,21 @@
-from ScrapyNovel.books.book import BookWoDeLaoGongShiMingWang
+from ScrapyNovel.books.book import BookZhiShiXiangLiaoNi
 
 
 class BooksSetting:
 
     @staticmethod
     def initBook():
-        return BookWoDeLaoGongShiMingWang()
+        return BookZhiShiXiangLiaoNi()
 
     @staticmethod
     def getHtml():
         book = BooksSetting.initBook()
         return book.getHtml()
+
+    @staticmethod
+    def getHtmlLast():
+        book = BooksSetting.initBook()
+        return book.getHtmlLast()
 
     @staticmethod
     def getHeadHtmlReg():

@@ -11,7 +11,7 @@ from ScrapyNovel.books.spider_types import SpiderTypes
 
 
 class NovelSpider1(scrapy.spiders.Spider):
-    # name = "NovelJinJiangWenXueWang"
+    # name = "NovelJJWXC"
     name = SpiderTypes.getTypeName_JJWXC()
     start_urls = [
         BooksSetting.getHtml()
