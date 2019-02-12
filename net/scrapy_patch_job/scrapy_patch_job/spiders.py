@@ -19,6 +19,7 @@ class JobSpider(scrapy.Spider):
             print('start_requests: current i=%d, url=%s'%(i, url))
             yield scrapy.Request(url)
 
+    # 必需定义，解析返回结果的信息\
     def parse(self, response): #必需定义，解析返回结果的信息
         tables = response.xpath('//table[@class="newlist"]')
         # print('parse():response=',tables.extract())
@@ -75,6 +76,4 @@ class JobSpider(scrapy.Spider):
         for str in list:
             desc += str+splite
         return desc
-
-
 
