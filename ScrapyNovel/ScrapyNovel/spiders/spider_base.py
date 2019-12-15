@@ -56,7 +56,7 @@ class NovelSpiderBase(scrapy.spiders.Spider):
         pass
 
     def parse(self, response):
-        self.print_response(response)
+        # self.print_response(response)
         list = self.getXpathList(response)
         info = self.getXpathMainInfo(response)
         # print("info=", info.extract())
@@ -73,10 +73,10 @@ class NovelSpiderBase(scrapy.spiders.Spider):
                 print("index=%s, link=%s" % (index, link))
                 self.urls.append(link)
                 yield Request(link, method="GET", callback=self.parse_item)
-                # break
+                break
 
     def parse_item(self, response):
-        # self.print_response(response)
+        self.print_response(response)
         xpath_main = self.getXpathItem_Main(response)
         item = ScrapynovelItem()
         item['name'] = self.getStrItem_Name(xpath_main) if self.item_name.strip()=='' else self.item_name

@@ -1,6 +1,7 @@
 import scrapy
 
 from net.scrapy_patch_job.scrapy_patch_job.items import ScrapyPatchJobItem
+from scrapy_splash import SplashRequest
 
 
 class JobSpider(scrapy.Spider):
@@ -14,25 +15,27 @@ class JobSpider(scrapy.Spider):
 
     def start_requests(self):
         for i in range(10):
-            url="http://sou.zhaopin.com/jobs/searchresult.ashx?jl=北京&kw=Android&sm=0&p=%d"%(i)
-            # url="http://sou.zhaopin.com/jobs/searchresult.ashx?jl=北京&kw=文员&sm=0&p=%d"%(i)
+            # url="http://sou.zhaopin.com/jobs/searchresult.ashx?jl=北京&kw=Android Framework&sm=0&p=%d"%(i)
+            url="http://sou.zhaopin.com/jobs/searchresult.ashx?pageSize=60&jl=北京&kw=文员&kt=3&p=%d"%(i)
             print('start_requests: current i=%d, url=%s'%(i, url))
-            yield scrapy.Request(url)
+            yield SplashRequest(url)
+            break
 
     # 必需定义，解析返回结果的信息\
     def parse(self, response): #必需定义，解析返回结果的信息
-        tables = response.xpath('//table[@class="newlist"]')
-        # print('parse():response=',tables.extract())
+        #tables = response.xpath('.//div[@id="listContent"]')
+        tables = response.xpath('.//div[@class = "contentpile"]')
+        print('parse():response=',tables.extract())
         for table in tables:
-            detailLink=table.xpath('.//tr/td[@class="zwmc"]/div/a/@href').extract()
+            detailLink=table.xpath('.//div[@class="infoBox"]/div[@class="itemBox nameBox"]/div[@class="jobName"]/a/@href').extract()
             if len(detailLink)>0:
-                # print("request detail Link=", detailLink[0])
+                print("request detail Link=", detailLink[0])
                 yield scrapy.Request(detailLink[0], callback=self.parse_item)
-                # break
+                break
 
     def parse_item(self, response):
         item = ScrapyPatchJobItem()
-        # print("cur table=%s"%(trs.extract()))
+        print("cur table=%s"%(response.extract()))
         item["title"] = response.xpath('.//div[@class="inner-left fl"]/h1/text()').extract()[0].strip()
         item["company"] = response.xpath('.//div[@class="inner-left fl"]/h2/a/text()').extract()[0].strip()
         xpath_company_detail_li = response.xpath('.//div[@class="terminalpage-right"]/div[@class="company-box"]/ul[@class="terminal-ul clearfix terminal-company mt20"]/li')

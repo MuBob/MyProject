@@ -41,7 +41,7 @@ class ScrapyPatchHousePipeline(object):
     def process_item(self, item, spider):
         print('item=', item)
         try:
-            is_in_range = self.gaode.isInRange(self.my_position, self.my_range, self.gaode.getPosition(item['area']))
+            is_in_range = self.gaode.isInRange(self.my_position, self.my_range, self.gaode.getPosition(item['residential']))
             is_lean_in = self.filter.filtLeanIn(item['lease'])
             is_lean_in = True
             is_money = self.filter.filtMoney(item['rentMoney'])
