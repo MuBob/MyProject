@@ -8,21 +8,22 @@ class JobSpider(scrapy.Spider):
     allowed_domains = ["zhaopin.com"]
     start_urls = [
         "http://www.zhaopin.com"
-        ,"http://sou.zhaopin.com/jobs/searchresult.ashx?jl=北京"
-        # ,"http://sou.zhaopin.com/jobs/searchresult.ashx?jl=北京&kw=文员&sm=0&p=1"
+        # ,"http://sou.zhaopin.com/jobs/searchresult.ashx?jl=北京"
+        ,"https://sou.zhaopin.com/?jl=北京&kw=文员&kt=3"
     ] #必需定义，一个url列表，spider从这些网页开始抓取
 
     def start_requests(self):
         for i in range(10):
-            url="http://sou.zhaopin.com/jobs/searchresult.ashx?jl=北京&kw=Android&sm=0&p=%d"%(i)
-            # url="http://sou.zhaopin.com/jobs/searchresult.ashx?jl=北京&kw=文员&sm=0&p=%d"%(i)
+            # url="http://sou.zhaopin.com/jobs/searchresult.ashx?jl=北京&kw=Android&sm=0&p=%d"%(i)
+            url="https://sou.zhaopin.com/?jl=北京&kw=文员&kt=3&p=%d"%(i+2)
             print('start_requests: current i=%d, url=%s'%(i, url))
             yield scrapy.Request(url)
+            break
 
     # 必需定义，解析返回结果的信息\
     def parse(self, response): #必需定义，解析返回结果的信息
         tables = response.xpath('//table[@class="newlist"]')
-        # print('parse():response=',tables.extract())
+        print('parse():response=',tables.extract())
         for table in tables:
             detailLink=table.xpath('.//tr/td[@class="zwmc"]/div/a/@href').extract()
             if len(detailLink)>0:
@@ -32,7 +33,7 @@ class JobSpider(scrapy.Spider):
 
     def parse_item(self, response):
         item = ScrapyPatchJobItem()
-        # print("cur table=%s"%(trs.extract()))
+        print("cur response=%s", (response))
         item["title"] = response.xpath('.//div[@class="inner-left fl"]/h1/text()').extract()[0].strip()
         item["company"] = response.xpath('.//div[@class="inner-left fl"]/h2/a/text()').extract()[0].strip()
         xpath_company_detail_li = response.xpath('.//div[@class="terminalpage-right"]/div[@class="company-box"]/ul[@class="terminal-ul clearfix terminal-company mt20"]/li')

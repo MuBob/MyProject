@@ -59,12 +59,16 @@ class NovelSpiderBase(scrapy.spiders.Spider):
         self.print_response(response)
         list = self.getXpathList(response)
         info = self.getXpathMainInfo(response)
-        # print("info=", info.extract())
+        print("info=", info.extract())
         self.item_name = self.getStrMainInfo_Name(info)
         self.item_author = self.getStrMainInfo_Author(info)
         for item in list:
             link = self.getStrItem_Link(item)
             print("link=", link)
+            if link.startswith(BooksSetting.getHtml()):
+                link=link
+            else:
+                link=BooksSetting.getHtml()+link
             if link=='': continue
             if self.urls.__contains__(link):
                 continue
@@ -78,6 +82,7 @@ class NovelSpiderBase(scrapy.spiders.Spider):
     def parse_item(self, response):
         # self.print_response(response)
         xpath_main = self.getXpathItem_Main(response)
+        # print("xpath_main=", xpath_main)
         item = ScrapynovelItem()
         item['name'] = self.getStrItem_Name(xpath_main) if self.item_name.strip()=='' else self.item_name
         item['author'] = self.getStrItem_Author(xpath_main) if self.item_author.strip()=='' else self.item_author

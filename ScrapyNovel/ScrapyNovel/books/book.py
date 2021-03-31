@@ -497,3 +497,161 @@ class BookYiZuoChengZaiDengNi(Book):
 
     def getScrapyType(self):
         return SpiderTypes.getTypeName_LeWenXiaoShuo()
+
+############################################ 来自《言情小说网》 ###########################################################
+class BookFuQiJiaoHuan(Book):
+    def getBookName(self):
+        return "夫妻交换小说"
+
+    def getHeadReg(self):
+        return ".*" + "4609" + "/(.*)" + self.getHtmlLast() + ".*"
+
+    def getHtml(self):
+        return "http://www.7xxs.net/cbyq/4609/"
+
+    def getScrapyType(self):
+        return SpiderTypes.getTypeName_7xxs()
+
+class BookTiaoJiaoYinDangXiaoMao(Book):
+    def getBookName(self):
+        return "淫荡小猫的调教"
+
+    def getHeadReg(self):
+        return ".*" + "5002" + "/(.*)" + self.getHtmlLast() + ".*"
+
+    def getHtml(self):
+        return "http://www.7xxs.net/cbyq/5002/"
+
+    def getScrapyType(self):
+        return SpiderTypes.getTypeName_7xxs()
+
+class BookYinFuChiNv(Book):
+    def getBookName(self):
+        return "淫父痴女"
+
+    def getHeadReg(self):
+        return ".*" + "23968" + "/(.*)" + self.getHtmlLast() + ".*"
+
+    def getHtml(self):
+        return "http://www.7xxs.net/cbyq/23968/"
+
+    def getScrapyType(self):
+        return SpiderTypes.getTypeName_7xxs()
+
+class BookSaoZiHeJi(Book):
+    def getBookName(self):
+        return "嫂子合集"
+
+    def getHeadReg(self):
+        return ".*" + "171" + "/(.*)" + self.getHtmlLast() + ".*"
+
+    def getHtml(self):
+        return "http://www.7xxs.net/cbyq/171/"
+
+    def getScrapyType(self):
+        return SpiderTypes.getTypeName_7xxs()
+
+class BookYinLuanXiaoZhen(Book):
+    def getBookName(self):
+        return "淫乱小镇"
+
+    def getHeadReg(self):
+        return ".*" + "4594" + "/(.*)" + self.getHtmlLast() + ".*"
+
+    def getHtml(self):
+        return "http://www.7xxs.net/cbyq/4594/"
+
+    def getScrapyType(self):
+        return SpiderTypes.getTypeName_7xxs()
+
+class BookZhiFuXiLie(Book):
+    def getBookName(self):
+        return "制服系列"
+
+    def getHeadReg(self):
+        return ".*" + "5151" + "/(.*)" + self.getHtmlLast() + ".*"
+
+    def getHtml(self):
+        return "http://www.7xxs.net/cbyq/5151"
+
+    def getScrapyType(self):
+        return SpiderTypes.getTypeName_7xxs()
+
+class BookJiaZuMeiFu(Book):
+    def getBookName(self):
+        return "家族美妇"
+
+    def getHeadReg(self):
+        return ".*" + "8522" + "/(.*)" + self.getHtmlLast() + ".*"
+
+    def getHtml(self):
+        return "http://www.7xxs.net/cbyq/8522"
+
+    def getScrapyType(self):
+        return SpiderTypes.getTypeName_7xxs()
+
+class BookJiaTingLuanLun1(Book):
+    def getBookName(self):
+        return "家庭乱伦1"
+
+    def getHeadReg(self):
+        return ".*" + "5182" + "/(.*)" + self.getHtmlLast() + ".*"
+
+    def getHtml(self):
+        return "http://www.7xxs.net/cbyq/5182"
+
+    def getScrapyType(self):
+        return SpiderTypes.getTypeName_7xxs()
+
+class BookXianWangLaWenHeJi1(Book):
+    def getBookName(self):
+        return "鲜网辣文合集1"
+
+    def getHeadReg(self):
+        return ".*" + "5141" + "/(.*)" + self.getHtmlLast() + ".*"
+
+    def getHtml(self):
+        return "http://www.7xxs.net/cbyq/5141"
+
+    def getScrapyType(self):
+        return SpiderTypes.getTypeName_7xxs()
+
+class BookXianWangLaWenHeJi2(Book):
+    def getBookName(self):
+        return "鲜网辣文合集2"
+
+    def getHeadReg(self):
+        return ".*" + "5484" + "/(.*)" + self.getHtmlLast() + ".*"
+
+    def getHtml(self):
+        return "http://www.7xxs.net/cbyq/5484"
+
+    def getScrapyType(self):
+        return SpiderTypes.getTypeName_7xxs()
+
+class BookXianWangLaWenHeJi3(Book):
+    def getBookName(self):
+        return "鲜网辣文合集3"
+
+    def getHeadReg(self):
+        return ".*" + "4588" + "/(.*)" + self.getHtmlLast() + ".*"
+
+    def getHtml(self):
+        return "http://www.7xxs.net/cbyq/4588"
+
+    def getScrapyType(self):
+        return SpiderTypes.getTypeName_7xxs()
+
+############################################ 来自《言情小说库》 ###########################################################
+class BookHuanQi(Book):
+    def getBookName(self):
+        return "换妻"
+
+    def getHeadReg(self):
+        return ".*" + "huanqi2" + "/(.*)" + self.getHtmlLast() + ".*"
+
+    def getHtml(self):
+        return "http://www.yqk.net/yanqing/huanqi2/"
+
+    def getScrapyType(self):
+        return SpiderTypes.getTypeName_YanQingKu()
