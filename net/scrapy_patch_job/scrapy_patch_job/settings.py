@@ -13,7 +13,7 @@ BOT_NAME = 'scrapy_patch_job'
 
 SPIDER_MODULES = ['scrapy_patch_job.spiders']
 NEWSPIDER_MODULE = 'scrapy_patch_job.spiders'
-
+SPLASH_URL = 'http://localhost:8050'
 
 # Crawl responsibly by identifying yourself (and your website) on the user-agent
 #USER_AGENT = 'scrapy_patch_job (+http://www.yourdomain.com)'
@@ -46,15 +46,18 @@ ROBOTSTXT_OBEY = True
 
 # Enable or disable spider middlewares
 # See http://scrapy.readthedocs.org/en/latest/topics/spider-middleware.html
-#SPIDER_MIDDLEWARES = {
-#    'scrapy_patch_job.middlewares.ScrapyPatchJobSpiderMiddleware': 543,
-#}
+SPIDER_MIDDLEWARES = {
+   'scrapy_patch_job.middlewares.ScrapyPatchJobSpiderMiddleware': 543,
+}
 
 # Enable or disable downloader middlewares
 # See http://scrapy.readthedocs.org/en/latest/topics/downloader-middleware.html
-#DOWNLOADER_MIDDLEWARES = {
-#    'scrapy_patch_job.middlewares.MyCustomDownloaderMiddleware': 543,
-#}
+DOWNLOADER_MIDDLEWARES = {
+   'scrapy_splash.SplashCookiesMiddleware': 723,
+   'scrapy_splash.SplashMiddleware': 725,
+   'scrapy.downloadermiddlewares.httpcompression.HttpCompressionMiddleware': 810,
+   # 'scrapy_patch_job.middlewares.MyCustomDownloaderMiddleware': 543,
+}
 
 # Enable or disable extensions
 # See http://scrapy.readthedocs.org/en/latest/topics/extensions.html
@@ -88,3 +91,8 @@ ITEM_PIPELINES = {
 #HTTPCACHE_DIR = 'httpcache'
 #HTTPCACHE_IGNORE_HTTP_CODES = []
 #HTTPCACHE_STORAGE = 'scrapy.extensions.httpcache.FilesystemCacheStorage'
+
+# For ScrapySplash 4
+DUPEFILTER_CLASS = 'scrapy_splash.SplashAwareDupeFilter'
+# For ScrapySplash 5
+HTTPCACHE_STORAGE = 'scrapy_splash.SplashAwareFSCacheStorage'

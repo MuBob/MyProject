@@ -11,3 +11,7 @@ class HtmlSetting:
     def getSaveFileName():
         abspath = os.path.abspath('..')
         return abspath+'/out/58house.xls'
+
+    @staticmethod
+    def getFangTXUrlFormat():
+        return "http://zu.fang.com/house/i3%d-n31/"

@@ -15,10 +15,10 @@ SPIDER_MODULES = ['ScrapyNovel.spiders']
 NEWSPIDER_MODULE = 'ScrapyNovel.spiders'
 
 # For ScrapySplash 1
-SPLASH_URL = 'http://localhost:8050'
+SPLASH_URL = 'http://192.168.99.100:8050'
 
 # Crawl responsibly by identifying yourself (and your website) on the user-agent
-#USER_AGENT = 'ScrapyNovel (+http://www.yourdomain.com)'
+USER_AGENT = 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/55.0.2883.87 Safari/537.36'
 
 # Obey robots.txt rules
 ROBOTSTXT_OBEY = True
@@ -56,12 +56,11 @@ SPIDER_MIDDLEWARES = {
 
 # Enable or disable downloader middlewares
 # See http://scrapy.readthedocs.org/en/latest/topics/downloader-middleware.html
-# For ScrapySplash 2
 DOWNLOADER_MIDDLEWARES = {
     'scrapy_splash.SplashCookiesMiddleware': 723,
     'scrapy_splash.SplashMiddleware': 725,
     'scrapy.downloadermiddlewares.httpcompression.HttpCompressionMiddleware': 810,
-   #    'ScrapyNovel.middlewares.MyCustomDownloaderMiddleware': 543,
+   # 'search_sina.middlewares.MyCustomDownloaderMiddleware': 543,
 }
 
 # Enable or disable extensions
@@ -101,3 +100,5 @@ ITEM_PIPELINES = {
 DUPEFILTER_CLASS = 'scrapy_splash.SplashAwareDupeFilter'
 # For ScrapySplash 5
 HTTPCACHE_STORAGE = 'scrapy_splash.SplashAwareFSCacheStorage'
+
+# For scrapy_splash to get js html, copy that https://www.cnblogs.com/zhonghuasong/p/5976003.html

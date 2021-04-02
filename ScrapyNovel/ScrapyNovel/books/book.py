@@ -655,3 +655,18 @@ class BookHuanQi(Book):
 
     def getScrapyType(self):
         return SpiderTypes.getTypeName_YanQingKu()
+
+class BookYuanQingLingYvWenHao(Book):
+    def getBookName(self):
+        return "元卿凌宇文皓"
+
+    def getHeadReg(self):
+        return "*"
+
+    def getHtml(self):
+        return "https://www.xinshubao.net/3/3896/"
+
+    def getScrapyType(self):
+        return SpiderTypes.getTypeName_XinShuBao()
+
+

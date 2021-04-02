@@ -29,10 +29,22 @@ class Position:
 
 
 class GaoDeApi:
+        def __init__(self):
+                KEY="c450fc18e8898cb0c23cfac348a29a65"
+                URL_CODE="http://restapi.amap.com/v3/geocode/geo"
+                URL_MAP="http://restapi.amap.com/v3/staticmap"
+
         def geocode(self, address):
-                parameters = {'address': address, 'key': '0227a01758d4893b192714a1023dacf9'}
-                base = 'http://restapi.amap.com/v3/geocode/geo'
-                response = requests.get(base, parameters)
+                parameters = {'address': address, 'key': self.KEY}
+                response = requests.get(self.URL_CODE, parameters)
+                answer = response.json()
+                # print("answer=", answer)
+                return answer
+
+        def map(self, position):
+                marks="small,0xFF0000:"+position.getX+","+position.getY()
+                parameters = {'markers': marks, 'key': self.KEY}
+                response = requests.get(URL_CODE, parameters)
                 answer = response.json()
                 # print("answer=", answer)
                 return answer

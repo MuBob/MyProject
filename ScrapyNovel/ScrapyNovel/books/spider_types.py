@@ -69,3 +69,9 @@ class SpiderTypes:
     @staticmethod
     def getTypeName_GuaZiBpi():
         return 'NovelGuaZiBpi'
+    def getTypeName_ShuXiangGe():
+        return 'NovelShuXiangGe'
+
+    @staticmethod
+    def getTypeName_XinShuBao():
+        return 'NovelXinShuBao'

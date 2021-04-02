@@ -49,7 +49,7 @@ class ScrapyPatchJobPipeline(object):
 
 
     def process_item(self, item, spider):
-        # is_in_range = self.gaode.isInRange(self.my_position, self.my_range, self.gaode.getPosition(item['location']))
+        is_in_range = self.gaode.isInRange(self.my_position, self.my_range, self.gaode.getPosition(item['location']))
         # is_title = self.filter.filterTitle(item['title'])
         is_title = self.filter.filterTitleOut(item['title'])
         is_location = self.filter.filterLocation(item['location'])
